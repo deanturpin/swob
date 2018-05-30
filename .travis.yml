@@ -1,5 +1,5 @@
 language: cpp
-script: make CXX=clang++-5.0
+script: which clang++ && make CXX=clang++-5.0
 deploy:
   provider: pages
   github-token: ${api_key}
