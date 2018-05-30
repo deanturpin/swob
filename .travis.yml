@@ -1,0 +1,8 @@
+script: make CXX=clang++-5.0
+deploy:
+  provider: pages
+  github-token: ${api_key}
+  skip-cleanup: true
+  keep-history: true
+  on:
+    branch: master
