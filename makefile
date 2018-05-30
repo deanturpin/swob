@@ -7,6 +7,9 @@ DEBUG = -g --coverage
 
 all: swob.o
 	cat template.md > readme.md
+	echo '```cpp' >> readme.md
+	cat swob.h >> readme.md
+	echo '```' >> readme.md
 	./$< >> readme.md
 clean:
 	rm -f *.o

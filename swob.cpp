@@ -3,6 +3,8 @@
 #include <sstream>
 #include <vector>
 
+#include "swob.h"
+
 int main() {
 
   // Tool definition
@@ -22,13 +24,18 @@ int main() {
       {
           "gcc",
           {
-              {"3", 2003}, {"4", 2010}, {"5", 2015}, {"6", 2016},
+              {"4.1.2", 2007},
+              {"4.8.5", 2015},
+              {"5.4", 2016},
+              {"6.4", 2017},
+              {"7.3", 2018},
+              {"8.1", 2018},
           },
       },
       {
           "clang",
           {
-              {"4", 2010}, {"5", 2015}, {"6", 2016},
+              {"3.5", 2014}, {"4", 2017}, {"5", 2017}, {"6", 2018},
           },
       },
       {
@@ -43,20 +50,16 @@ int main() {
               {"2a", 2020},
           },
       },
-  };
-
-  // A project needs a name and a list of attributes
-  struct project {
-    const std::string name{"no name"};
-    const std::string toolchain{"Windows-10, gcc-5, RHEL-5"};
-  };
-
-  // Create some projects with toolchains
-  const std::vector<project> projects{
-      {"Dean's laptop", "Ubuntu-17 gcc-6 clang-4 C++14"},
-      {"Dean's Travis CI config", "Ubuntu-14 gcc-8 clang-6 C++14"},
-      {"Roadmap 2018", "Ubuntu-18 gcc-7 clang-5 C++14"},
-      {"Roadmap 2019", "Ubuntu-19 gcc-8 clang-6 C++17"},
+      {
+          "Ubuntu",
+          {
+              {"12", 2017},
+              {"14", 2017},
+              {"16", 2018},
+              {"17", 2018},
+              {"18", 2018},
+          },
+      },
   };
 
   // Summary
@@ -68,7 +71,7 @@ int main() {
   std::cout << "\n# Projects\n";
   for (const auto &p : projects) {
 
-    std::cout << '\n' << p.name << ":\n";
+    std::cout << '\n' << p.name << "\n";
     std::istringstream iss(p.toolchain);
 
     // Tokenise the toolchain
