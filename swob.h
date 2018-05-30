@@ -2,7 +2,7 @@
 #define SWOB_H
 
 // A project needs a name and a list of attributes of the format:
-// tool-revision
+// "tool-revision"
 struct project {
   const std::string name{"no name"};
   const std::string toolchain{"Windows-10 gcc-5 RHEL-5"};
