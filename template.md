@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/deanturpin/swob.svg?branch=master)](https://travis-ci.org/deanturpin/swob)
+
 A measure of software obsolescence based on toolchain age.
 
 # References
