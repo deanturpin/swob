@@ -6,5 +6,6 @@ DEBUG = -g --coverage
 	$(CXX) -o $@ $< $(CCFLAGS) $(DEBUG)
 
 all: swob.o
+	./$< > readme.md
 clean:
 	rm -f *.o
