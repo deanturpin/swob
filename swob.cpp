@@ -1,7 +1,22 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 int main() {
+
+  // Tools
+  struct tool {
+
+    struct revision {
+      const std::string name;
+      const unsigned long year;
+    };
+
+    const std::string name{"no name"};
+    const std::vector<revision> releases;
+  };
+
+  const std::vector<tool> tools{};
 
   // A project needs a name and a list of attributes, the tools are
   // comma-separated, the version and tool name is delimited by a space
@@ -18,4 +33,24 @@ int main() {
 
   // Summary
   std::cout << projects.size() << " projects\n";
+  std::cout << tools.size() << " tools\n";
+
+  for (const auto &p : projects) {
+    std::cout << p.name << ":\n";
+
+    std::string line;
+    std::stringstream toolchain(p.toolchain);
+    while (std::getline(toolchain, line, ','))
+      std::cout << '\t' << line << '\n';
+  }
+
+  /*
+  vector<string> tokens{istream_iterator<string>{iss},
+                          istream_iterator<string>{}};
+                          */
+
+  /*
+   *     std::vector<std::string> elems;
+   *         split(s, delim, std::back_inserter(elems));
+   *         */
 }
