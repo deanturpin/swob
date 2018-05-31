@@ -86,7 +86,7 @@ int main() {
   std::cout << "\n# Projects\n";
 
   // Print project info
-  std::cout << "```bash\n";
+  std::cout << "```\n";
   for (const auto &p : projects) {
 
     std::istringstream iss(p.toolchain);

@@ -8,7 +8,7 @@ Edit ```swob.h``` and run ```make clean all``` to generate new readme.
 
 ---
 
-Generated Thu 31 May 21:54:22 BST 2018
+Generated Thu 31 May 21:56:01 BST 2018
 ```cpp
 #ifndef SWOB_H
 #define SWOB_H
@@ -36,7 +36,7 @@ const std::vector<project> projects{
 * 6 tools
 
 # Projects
-```bash
+```
 ----------------| Dean's laptop (6) 
 ----------------| Dean's Travis CI config (4) 
 -----------------| Roadmap 2018 (6) 
