@@ -28,10 +28,10 @@ int main() {
           {
               {"4.1.2", 2007},
               {"4.8.5", 2015},
-              {"5.4", 2016},
-              {"6.4", 2017},
-              {"7.3", 2018},
-              {"8.1", 2018},
+              {"5", 2016},
+              {"6", 2017},
+              {"7", 2018},
+              {"8", 2018},
           },
       },
       {
@@ -55,11 +55,14 @@ int main() {
       {
           "Ubuntu",
           {
-              {"12", 2017},
-              {"14", 2017},
-              {"16", 2018},
-              {"17", 2018},
+              {"12", 2012},
+              {"13", 2013},
+              {"14", 2014},
+              {"15", 2015},
+              {"16", 2016},
+              {"17", 2017},
               {"18", 2018},
+              {"19", 2019},
           },
       },
   };
@@ -110,13 +113,13 @@ int main() {
         warnings << name << " missing, ";
     }
 
-    double mean_year = 0.0;
+    unsigned long mean_year = 0;
     if (!tool_years.empty())
       mean_year =
-          std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
+          std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0) /
           tool_years.size();
 
-    std::cout << mean_year << " | " << p.name << " (" << warnings.str()
-              << ")\n";
+    std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " "
+              << warnings.str() << "\n";
   }
 }
