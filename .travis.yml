@@ -1,4 +1,7 @@
-script: clang++ --version && make
+script:
+  - clang++ --version
+  - uname -a
+  - make
 deploy:
   provider: pages
   github-token: ${api_key}

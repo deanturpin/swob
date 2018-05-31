@@ -65,15 +65,21 @@ int main() {
               {"19", 2019},
           },
       },
+      {
+          "kernel",
+          {
+              {"4.10", 2017}, {"4.14", 2018}, {"4.17", 2018},
+          },
+      },
   };
 
   // Summary
   std::cout << "# Project summary\n";
   std::cout << "* " << projects.size() << " projects\n";
   std::cout << "* " << tools.size() << " tools\n";
+  std::cout << "\n# Projects\n";
 
   // Print project info
-  std::cout << "\n# Projects\n";
   for (const auto &p : projects) {
 
     std::istringstream iss(p.toolchain);
