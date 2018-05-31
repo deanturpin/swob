@@ -86,6 +86,7 @@ int main() {
   std::cout << "\n# Projects\n";
 
   // Print project info
+  std::cout << "```bash\n";
   for (const auto &p : projects) {
 
     std::istringstream iss(p.toolchain);
@@ -134,4 +135,5 @@ int main() {
     std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
               << tool_years.size() << ") " << warnings.str() << '\n';
   }
+  std::cout << "```\n";
 }
