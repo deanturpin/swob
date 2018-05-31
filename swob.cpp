@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <iterator>
 #include <sstream>
@@ -11,8 +12,8 @@ int main() {
   struct tool {
 
     struct revision {
-      const std::string name{};
-      const unsigned long year{};
+      const std::string name;
+      const unsigned long year;
     };
 
     const std::string name{"no name"};
@@ -86,7 +87,26 @@ int main() {
       token >> revision;
 
       // Look up the provenance of the tool
-      std::cout << "* " << name << " " << revision << '\n';
+      // std::cout << "* " << name << " " << revision << '\n';
+      const auto tool_iterator =
+          std::find_if(std::cbegin(tools), std::cend(tools),
+                       [&name](const auto &a) { return a.name == name; });
+
+      // If we've found the tool then look for the revision
+      if (tool_iterator != std::cend(tools)) {
+
+        std::cout << name << " found\n";
+        const auto revision_iterator = std::find_if(
+            std::cbegin(tool_iterator->releases),
+            std::cend(tool_iterator->releases),
+            [&revision](const auto &b) { return b.name == revision; });
+
+        if (revision_iterator != std::cend(tool_iterator->releases))
+          std::cout << revision_iterator->year << '\n';
+        else
+          std::cout << revision << " missing\n";
+      } else
+        std::cout << name << " missing\n";
     }
   }
 }
