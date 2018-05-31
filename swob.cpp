@@ -74,6 +74,7 @@ int main() {
   for (const auto &p : projects) {
 
     std::istringstream iss(p.toolchain);
+    std::stringstream warnings;
 
     std::vector<unsigned long> tool_years;
 
@@ -103,10 +104,10 @@ int main() {
         if (revision_iterator != std::cend(tool_iterator->releases))
           tool_years.push_back(revision_iterator->year);
         else
-          std::cout << revision << " missing\n";
+          warnings << revision << " missing, ";
 
       } else
-        std::cout << name << " missing\n";
+        warnings << name << " missing, ";
     }
 
     double mean_year = 0.0;
@@ -115,6 +116,7 @@ int main() {
           std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
           tool_years.size();
 
-    std::cout << mean_year << " | " << p.name << '\n';
+    std::cout << mean_year << " | " << p.name << " (" << warnings.str()
+              << ")\n";
   }
 }
