@@ -1,12 +1,12 @@
 script:
   - clang++ --version
   - uname -a
-  - make
+  - make CXX=g++-8
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: pages
   github-token: ${api_key}
   skip-cleanup: true
-  keep-history: true
   on:
     branch: master
 
