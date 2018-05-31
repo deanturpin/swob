@@ -6,6 +6,9 @@ A measure of software obsolescence based on toolchain age.
 # Configure and build
 Edit ```swob.h``` and run ```make clean all``` to generate new readme.
 
+---
+
+Generated Thu 31 May 21:54:22 BST 2018
 ```cpp
 #ifndef SWOB_H
 #define SWOB_H
