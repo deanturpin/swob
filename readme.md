@@ -35,7 +35,7 @@ const std::vector<project> projects{
 * 4 tools
 
 # Projects
-----------------| Dean's laptop 
-----------------| Dean's Travis CI config 
-----------------| Roadmap 2018 
-------------------| Roadmap 2019 
+----------------| Dean's laptop (4) 
+----------------| Dean's Travis CI config (4) 
+----------------| Roadmap 2018 (4) 
+------------------| Roadmap 2019 (4) 

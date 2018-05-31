@@ -119,7 +119,7 @@ int main() {
           std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0) /
           tool_years.size();
 
-    std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " "
-              << warnings.str() << "\n";
+    std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
+              << tool_years.size() << ") " << warnings.str() << '\n';
   }
 }
