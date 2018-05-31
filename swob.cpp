@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <iterator>
+#include <numeric>
 #include <sstream>
 #include <vector>
 
@@ -72,10 +73,11 @@ int main() {
   std::cout << "\n# Projects\n";
   for (const auto &p : projects) {
 
-    std::cout << '\n' << p.name << "\n";
     std::istringstream iss(p.toolchain);
 
-    // Tokenise the toolchain
+    std::vector<unsigned long> tool_years;
+
+    // Tokenise the toolchain and extract the years
     for (const auto &t :
          std::vector<std::string>{std::istream_iterator<std::string>{iss},
                                   std::istream_iterator<std::string>{}}) {
@@ -87,26 +89,32 @@ int main() {
       token >> revision;
 
       // Look up the provenance of the tool
-      // std::cout << "* " << name << " " << revision << '\n';
       const auto tool_iterator =
           std::find_if(std::cbegin(tools), std::cend(tools),
                        [&name](const auto &a) { return a.name == name; });
 
       // If we've found the tool then look for the revision
       if (tool_iterator != std::cend(tools)) {
-
-        std::cout << name << " found\n";
         const auto revision_iterator = std::find_if(
             std::cbegin(tool_iterator->releases),
             std::cend(tool_iterator->releases),
             [&revision](const auto &b) { return b.name == revision; });
 
         if (revision_iterator != std::cend(tool_iterator->releases))
-          std::cout << revision_iterator->year << '\n';
+          tool_years.push_back(revision_iterator->year);
         else
           std::cout << revision << " missing\n";
+
       } else
         std::cout << name << " missing\n";
     }
+
+    double mean_year = 0.0;
+    if (!tool_years.empty())
+      mean_year =
+          std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
+          tool_years.size();
+
+    std::cout << mean_year << " | " << p.name << '\n';
   }
 }
