@@ -6,3 +6,8 @@ deploy:
   keep-history: true
   on:
     branch: master
+
+addons:
+  apt:
+    sources: ubuntu-toolchain-r-test
+    packages: cowsay
