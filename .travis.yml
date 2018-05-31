@@ -1,4 +1,4 @@
-script: make
+script: clang++ --version && make
 deploy:
   provider: pages
   github-token: ${api_key}
