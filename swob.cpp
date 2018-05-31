@@ -78,9 +78,15 @@ int main() {
     for (const auto &t :
          std::vector<std::string>{std::istream_iterator<std::string>{iss},
                                   std::istream_iterator<std::string>{}}) {
-      std::cout << "* " << t << '\n';
 
-      // Split token into tool and revision
+      // Split token into tool name and revision
+      std::istringstream token(t);
+      std::string name, revision;
+      std::getline(token, name, '-');
+      token >> revision;
+
+      // Look up the provenance of the tool
+      std::cout << "* " << name << " " << revision << '\n';
     }
   }
 }
