@@ -9,7 +9,7 @@ all: swob.o
 	cat template.md > readme.md
 	TZ=BST-1 date >> readme.md
 	echo '```cpp' >> readme.md
-	cat swob.h >> readme.md
+	cat projects.txt >> readme.md
 	echo '```' >> readme.md
 	./$< >> readme.md
 clean:
