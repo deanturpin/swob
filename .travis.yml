@@ -1,7 +1,9 @@
 script:
   - clang++ --version
   - uname -a
-  - make CXX=g++-8
+  - make CXX=clang++-6.0 swob.o
+  - make clean
+  - make CXX=g++-6
   - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: pages
@@ -21,6 +23,6 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - clang++-6.0
-            - g++-8
+            - g++-6
             - cppcheck
             - cowsay

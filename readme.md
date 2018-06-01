@@ -8,7 +8,7 @@ Edit ```swob.h``` and run ```make clean all``` to generate new readme.
 
 ---
 
-Generated Thu 31 May 21:56:01 BST 2018
+Generated Fri  1 Jun 07:03:07 BST 2018
 ```cpp
 #ifndef SWOB_H
 #define SWOB_H
