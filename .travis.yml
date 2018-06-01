@@ -5,6 +5,8 @@ script:
   - make clean
   - make CXX=g++-6
   - bash <(curl -s https://codecov.io/bash)
+  - cppcheck --enable=all .
+
 deploy:
   provider: pages
   github-token: ${api_key}
@@ -26,3 +28,4 @@ matrix:
             - g++-6
             - cppcheck
             - cowsay
+            - gnuplot
