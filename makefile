@@ -7,9 +7,7 @@ DEBUG = -g --coverage
 
 all: swob.o
 	cat template.md > readme.md
-	echo '```' >> readme.md
-	TZ=BST-1 date | cowsay >> readme.md
-	echo '```' >> readme.md
+	TZ=BST-1 date >> readme.md
 	echo '```cpp' >> readme.md
 	cat swob.h >> readme.md
 	echo '```' >> readme.md

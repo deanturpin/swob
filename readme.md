@@ -8,16 +8,7 @@ Edit ```swob.h``` and run ```make clean all``` to generate new readme.
 
 ---
 
-```
- _____________________________
-< Fri 1 Jun 07:08:01 BST 2018 >
- -----------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-```
+Fri  1 Jun 07:51:16 BST 2018
 ```cpp
 #ifndef SWOB_H
 #define SWOB_H
