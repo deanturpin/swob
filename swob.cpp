@@ -1,17 +1,36 @@
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <numeric>
 #include <sstream>
 #include <vector>
 
-#include "swob.h"
+// A project needs a name and a list of attributes of the format:
+// "tool-revision"
+struct project {
+  std::string name{"no name"};
+  std::string toolchain{"Windows-10 gcc-5 RHEL-5"};
+};
 
 int main() {
 
-  // Tool definition
-  struct tool {
+  // Read project details
+  std::vector<project> projects;
+  std::ifstream in("projects.txt");
+  if (in.good()) {
+    std::string line;
+    while (getline(in, line)) {
+      std::stringstream ss(line);
+      project p;
+      ss >> p.name;
+      p.toolchain = ss.str();
+      projects.push_back(p);
+    }
+  }
 
+  // A tool has a name and a list of revision/years
+  struct tool {
     struct revision {
       const std::string name;
       const unsigned long year;
@@ -92,7 +111,7 @@ int main() {
       {
           "Windows",
           {
-              {"10", 2010},
+              {"XP", 2001}, {"7", 2008}, {"10", 2010},
           },
       },
       {

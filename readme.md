@@ -1,5 +1,6 @@
 [![Build
 Status](https://travis-ci.org/deanturpin/swob.svg?branch=master)](https://travis-ci.org/deanturpin/swob)
+[![codecov](https://codecov.io/gh/deanturpin/swob/branch/master/graph/badge.svg)](https://codecov.io/gh/deanturpin/swob)
 
 A measure of software obsolescence based on toolchain age.
 
@@ -8,7 +9,7 @@ Edit ```swob.h``` and run ```make clean all``` to generate new readme.
 
 ---
 
-Fri  1 Jun 08:14:22 BST 2018
+Fri  1 Jun 21:43:03 BST 2018
 ```cpp
 #ifndef SWOB_H
 #define SWOB_H
@@ -27,7 +28,8 @@ const std::vector<project> projects{
     {"Dean's Travis CI config", "Ubuntu-14 gcc-8 kernel-4.14 clang-6 C++-14"},
     {"Roadmap 2018", "Ubuntu-18 gcc-7 clang-5 C++-14 kernel-4.14 python-3.6.5"},
     {"Roadmap 2019", "Ubuntu-19 gcc-8 clang-6 C++-17 kernel-4.17 python-3.6.5"},
-    {"example1", "gcc-4.8.5 C++-03 kernel-3.10 Windows-10 qt-4.8.7 RHEL-7 fw-4.1-rc8"},
+    {"example1",
+     "gcc-4.8.5 C++-03 kernel-3.10 Windows-10 qt-4.8.7 RHEL-7 fw-4.1-rc8"},
 };
 
 #endif
@@ -38,9 +40,9 @@ const std::vector<project> projects{
 
 # Projects
 ```
-----------------| Dean's laptop (6) 
-----------------| Dean's Travis CI config (5) 
------------------| Roadmap 2018 (6) 
-------------------| Roadmap 2019 (6) 
-------------| example1 (7) 
+----------------| Dean-laptop (6) Dean missing, 
+----------------| Dean-Travis (5) Dean missing, 
+-----------------| Roadmap-2018 (6) Roadmap missing, 
+------------------| Roadmap-2019 (6) Roadmap missing, 
+------------| example1 (7) example1 missing, 
 ```
