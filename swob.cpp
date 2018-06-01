@@ -9,8 +9,8 @@
 // A project needs a name and a list of attributes of the format:
 // "tool-revision"
 struct project {
-  std::string name{"no name"};
-  std::string toolchain{"Windows-10 gcc-5 RHEL-5"};
+  std::string name;
+  std::string toolchain;
 };
 
 int main() {
@@ -36,7 +36,7 @@ int main() {
       const unsigned long year;
     };
 
-    const std::string name{"no name"};
+    const std::string name;
     const std::vector<revision> releases{};
   };
 
