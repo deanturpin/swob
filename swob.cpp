@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <fstream>
-#include <iostream>
 #include <iterator>
 #include <numeric>
 #include <sstream>
@@ -112,11 +111,6 @@ int main() {
 
     summary << p.name << '\t' << mean_year << '\n';
   }
-
-  // Summary
-  std::cout << "# Summary\n";
-  std::cout << "* " << projects.size() << " projects\n";
-  std::cout << "* " << tools.size() << " tools\n";
 
   // Dump summary to file
   std::ofstream out("summary.csv");
