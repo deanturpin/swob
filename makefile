@@ -22,4 +22,4 @@ all: swob.o
 	echo '![](summary.svg)' >> readme.md
 
 clean:
-	rm -f *.o
+	rm -f *.o *.svg
