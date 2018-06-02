@@ -11,6 +11,9 @@ all: swob.o
 	echo '```' >> readme.md
 	cat projects.txt >> readme.md
 	echo '```' >> readme.md
+	echo '```' >> readme.md
+	cat tools.txt >> readme.md
+	echo '```' >> readme.md
 	./$< >> readme.md
 clean:
 	rm -f *.o
