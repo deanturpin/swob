@@ -8,14 +8,8 @@ A measure of software obsolescence based on toolchain age.
 Edit ```projects.txt``` and ```tools.txt``` then run ```make clean all``` to generate a new readme.
 
 ---
-Sat  2 Jun 10:07:39 BST 2018
-```
-Dean-laptop     Ubuntu-17 gcc-6 clang-4 C++-14 kernel-4.10 python-3.5.3
-Dean-Travis     Ubuntu-14 gcc-8 kernel-4.14 clang-6 C++-14
-Roadmap-2018    Ubuntu-18 gcc-7 clang-5 C++-14 kernel-4.14 python-3.6.5
-Roadmap-2019    Ubuntu-19 gcc-8 clang-6 C++-17 kernel-4.17 python-3.6.5
-example1        gcc-4.8.5 C++-03 kernel-3.10 Windows-10 qt-4.8.7 RHEL-7 fw-4.1-rc8
-```
+Sat  2 Jun 13:45:30 BST 2018
+# Tools
 ```
 gcc             4.1.2 2007 4.8.5 2015 5 2016 6 2017 7 2018 8 2018
 clang           3.5 2014 4 2017 5 2017 6 2018
@@ -28,15 +22,24 @@ fw              4.1-rc8 2018
 Windows         XP 2001 7 2008 10 2010
 RHEL            5 2007 6 2010 6.5 2013 7 2014 8 2019
 ```
-# Project summary
+# Projects
+```
+Dean-laptop     Ubuntu-17 gcc-6 clang-4 C++-14 kernel-4.10 python-3.5.3
+Dean-Travis     Ubuntu-14 gcc-8 kernel-4.14 clang-6 C++-14
+Roadmap-2018    Ubuntu-18 gcc-7 clang-5 C++-14 kernel-4.14 python-3.6.5
+Roadmap-2019    Ubuntu-19 gcc-8 clang-6 C++-17 kernel-4.17 python-3.6.5
+example1        gcc-4.8.5 C++-03 kernel-3.10 Windows-10 qt-4.8.7 RHEL-7 fw-4.1-rc8
+```
+# Summary
 * 5 projects
 * 10 tools
 
 # Projects
 ```
-----------------| Dean-laptop (6) 
-----------------| Dean-Travis (5) 
------------------| Roadmap-2018 (6) 
-------------------| Roadmap-2019 (6) 
-------------| example1 (7) 
+Dean-laptop	2016.5
+Dean-Travis	2016.4
+Roadmap-2018	2017.17
+Roadmap-2019	2018
+example1	2012
 ```
+![](summary.svg)

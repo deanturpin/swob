@@ -25,5 +25,4 @@ matrix:
             - clang++-6.0
             - g++-6
             - cppcheck
-            - cowsay
             - gnuplot

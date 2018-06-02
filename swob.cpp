@@ -9,8 +9,8 @@
 // A project needs a name and a list of attributes of the format:
 // "tool-revision"
 struct project {
-  std::string name;
-  std::string toolchain;
+  std::string name{"noname"};
+  std::string toolchain{};
 };
 
 int main() {
@@ -34,11 +34,11 @@ int main() {
   // A tool has a name and a list of revision/years
   struct tool {
     struct revision {
-      std::string name;
+      std::string name{"noname"};
       unsigned long year;
     };
 
-    std::string name;
+    std::string name{"noname"};
     std::vector<revision> releases{};
   };
 
@@ -110,13 +110,13 @@ int main() {
           std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
           tool_years.size();
 
-    summary << p.name << ' ' << mean_year << '\n';
+    summary << p.name << '\t' << mean_year << '\n';
     // std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
     //           << tool_years.size() << ") " << warnings.str() << '\n';
   }
 
   // Summary
-  std::cout << "# Project summary\n";
+  std::cout << "# Summary\n";
   std::cout << "* " << projects.size() << " projects\n";
   std::cout << "* " << tools.size() << " tools\n";
   std::cout << "\n# Projects\n";
