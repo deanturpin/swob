@@ -1,3 +1,10 @@
 set terminal svg
+set boxwidth 0.95
+set style data histograms
+set style fill solid 0.8
+set style line 1 lt 1 lc rgb "#0080B0" lw 3
+unset ytics
+set y2tics rotate
+set xtics nomirror rotate scale 0
 set output "summary.svg"
-plot "summary.csv" using 2 with impulses
+plot "summary.csv" using 2
