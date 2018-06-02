@@ -2,13 +2,12 @@
 Status](https://travis-ci.org/deanturpin/swob.svg?branch=master)](https://travis-ci.org/deanturpin/swob)
 [![codecov](https://codecov.io/gh/deanturpin/swob/branch/master/graph/badge.svg)](https://codecov.io/gh/deanturpin/swob)
 
-A measure of software obsolescence based on toolchain age.
-
-# Configure and build
-Edit ```projects.txt``` and ```tools.txt``` then run ```make clean all``` to generate a new readme.
+A measure of software obsolescence based on toolchain age. Edit
+```projects.txt``` and ```tools.txt``` then run ```make clean all``` to generate
+a new readme.
 
 ---
-Sat  2 Jun 22:39:43 BST 2018
+Sat  2 Jun 22:51:24 BST 2018
 # Tools
 ```
 gcc             4.1.2 2007 4.8.5 2015 5 2016 6 2017 7 2018 8 2018
