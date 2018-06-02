@@ -17,7 +17,7 @@ all: swob.o
 	echo '```' >> readme.md
 	cat projects.txt >> readme.md
 	echo '```' >> readme.md
-	gnuplot summary.txt
+	gnuplot plot.txt
 	./$< >> readme.md
 	echo '![](summary.svg)' >> readme.md
 
