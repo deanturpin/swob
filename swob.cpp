@@ -64,14 +64,7 @@ int main() {
     }
   }
 
-  // Summary
-  std::cout << "# Project summary\n";
-  std::cout << "* " << projects.size() << " projects\n";
-  std::cout << "* " << tools.size() << " tools\n";
-  std::cout << "\n# Projects\n";
-
-  // Print project info
-  std::cout << "```\n";
+  std::stringstream summary;
   for (const auto &p : projects) {
 
     std::istringstream iss(p.toolchain);
@@ -111,14 +104,28 @@ int main() {
         warnings << name << " missing, ";
     }
 
-    unsigned long mean_year = 0;
+    double mean_year = 0;
     if (!tool_years.empty())
       mean_year =
-          std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0) /
+          std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
           tool_years.size();
 
-    std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
-              << tool_years.size() << ") " << warnings.str() << '\n';
+    summary << p.name << ' ' << mean_year << '\n';
+    // std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
+    //           << tool_years.size() << ") " << warnings.str() << '\n';
   }
+
+  // Summary
+  std::cout << "# Project summary\n";
+  std::cout << "* " << projects.size() << " projects\n";
+  std::cout << "* " << tools.size() << " tools\n";
+  std::cout << "\n# Projects\n";
   std::cout << "```\n";
+  std::cout << summary.str();
+  std::cout << "```\n";
+
+  // Dump summary to file
+  std::ofstream out("summary.csv");
+  if (out.good())
+    out << summary.str();
 }
