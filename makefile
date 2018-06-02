@@ -20,7 +20,7 @@ all: swob.o
 	cat projects.txt >> readme.md
 	echo '```' >> readme.md
 
-	$(shell gnuplot <<< 'set terminal svg; set output "summary.svg"; plot "summary.csv" using 2')
+	$(shell gnuplot <<< 'set terminal svg; set output "summary.svg"; plot "summary.csv" using 2 with impulses')
 	./$< >> readme.md
 	echo '![](summary.svg)' >> readme.md
 
