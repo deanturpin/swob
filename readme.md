@@ -8,7 +8,7 @@ A measure of software obsolescence based on toolchain age.
 Edit ```projects.txt``` and ```tools.txt``` then run ```make clean all``` to generate a new readme.
 
 ---
-Sat  2 Jun 20:16:14 BST 2018
+Sat  2 Jun 22:35:02 BST 2018
 # Tools
 ```
 gcc             4.1.2 2007 4.8.5 2015 5 2016 6 2017 7 2018 8 2018
@@ -34,14 +34,4 @@ example2        gcc-4.1.2 C++-03 kernel-3.10 RHEL-5 fw-3.14.2
 # Summary
 * 6 projects
 * 10 tools
-
-# Projects
-```
-Dean-laptop	2016.5
-Dean-Travis	2016.4
-Roadmap-2018	2017.17
-Roadmap-2019	2018
-example1	2012
-example2	2008.6
-```
 ![](summary.svg)

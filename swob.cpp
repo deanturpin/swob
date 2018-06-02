@@ -111,18 +111,12 @@ int main() {
           tool_years.size();
 
     summary << p.name << '\t' << mean_year << '\n';
-    // std::cout << std::string(mean_year - 2000, '-') << "| " << p.name << " ("
-    //           << tool_years.size() << ") " << warnings.str() << '\n';
   }
 
   // Summary
   std::cout << "# Summary\n";
   std::cout << "* " << projects.size() << " projects\n";
   std::cout << "* " << tools.size() << " tools\n";
-  std::cout << "\n# Projects\n";
-  std::cout << "```\n";
-  std::cout << summary.str();
-  std::cout << "```\n";
 
   // Dump summary to file
   std::ofstream out("summary.csv");
