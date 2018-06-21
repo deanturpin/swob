@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 #include <vector>
+#include <iostream>
 
 // A project needs a name and a list of attributes of the format:
 // "tool-revision"
@@ -23,12 +24,17 @@ int main() {
       std::stringstream ss(line);
       project p;
       ss >> p.name;
-      std::string tool;
-      while (ss >> tool)
-        p.toolchain += tool + " ";
+      p.toolchain = ss.str();
       projects.push_back(p);
     }
   }
+
+  std::cout << projects.size() << " projects\n";
+  // std::copy(std::cbegin(projects), projects.cend(), ostream_iterator)
+  for (const auto &p : projects)
+    std::cout << p.name << '\t' << p.toolchain << '\n';
+  return 0;
+
 
   // A tool has a name and a list of revision/years
   struct tool {
