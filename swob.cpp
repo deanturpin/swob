@@ -1,50 +1,48 @@
 #include <algorithm>
 #include <fstream>
+#include <iostream>
 #include <iterator>
 #include <numeric>
 #include <sstream>
 #include <vector>
-#include <iostream>
 
 // A project needs a name and a list of attributes of the format:
 struct project {
   std::string name;
   std::vector<std::string> toolchain;
 
-  friend std::istream& operator>>(std::istream &in, project &p) {
-	  p.toolchain = {std::istream_iterator<std::string>(in), {}};
-	  return in;
+  friend std::istream &operator>>(std::istream &in, project &p) {
+    p.toolchain = {std::istream_iterator<std::string>(in), {}};
+    return in;
   }
 };
 
-auto parse_config(const std::string file) {
+template <typename T> auto parse_config(const std::string file) {
 
-// We will return a vector of projects
-  std::vector<project> projects;
-
+  std::vector<T> projects;
   std::ifstream project_file(file);
   std::string line;
   project proj;
 
   while (getline(project_file, line)) {
 
-	  // Skip blank lines
-	  if (!line.empty()) {
+    // Skip blank lines
+    if (!line.empty()) {
 
-		  // Store the unpopulated param
-		  std::stringstream ss(line);
-		  if (proj.name.empty())
-			  ss >> proj.name;
-		  else
-			  ss >> proj;
-	  }
+      // Store the unpopulated param
+      std::stringstream ss(line);
+      if (proj.name.empty())
+        ss >> proj.name;
+      else
+        ss >> proj;
+    }
 
-	  // If project is complete store it and clear down local
-	  if (!proj.toolchain.empty()) {
-		  projects.emplace_back(proj);
-		  proj.name.clear();
-		  proj.toolchain.clear();
-	  }
+    // If project is complete store it and clear down local
+    if (!proj.toolchain.empty()) {
+      projects.emplace_back(proj);
+      proj.name.clear();
+      proj.toolchain.clear();
+    }
   }
 
   return projects;
@@ -53,13 +51,14 @@ auto parse_config(const std::string file) {
 int main() {
 
   // Read project and tool info
-  const auto &projects = parse_config("projects.txt");
-  const auto &tools = parse_config("tools.txt");
+  const auto blah = parse_config<project>("projects.txt");
+  const auto projects = std::move(blah);
+  const auto &tools = parse_config<project>("tools.txt");
 
   // Print summary
-  for (const auto &type: {tools, projects})
-	  for (const auto &i: type)
-		  std::cout << i.name << '\n';
+  for (const auto &type : {tools, projects})
+    for (const auto &i : type)
+      std::cout << i.name << '\n';
 
   // std::stringstream summary;
   // for (const auto &p : projects) {
@@ -104,7 +103,8 @@ int main() {
   //   double mean_year = 0;
   //   if (!tool_years.empty())
   //     mean_year =
-  //         std::accumulate(std::cbegin(tool_years), std::cend(tool_years), 0.0) /
+  //         std::accumulate(std::cbegin(tool_years), std::cend(tool_years),
+  //         0.0) /
   //         tool_years.size();
 
   //   summary << p.name << '\t' << mean_year << '\n';
