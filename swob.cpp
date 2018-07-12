@@ -5,72 +5,90 @@
 #include <numeric>
 #include <sstream>
 #include <tuple>
+#include <map>
 #include <vector>
 
-// A project needs a name and a list of attributes of the format:
-// struct project {
-//   std::string name;
-//   std::vector<std::string> toolchain;
-// 
-//   friend std::istream &operator>>(std::istream &in, project &p) {
-//     p.toolchain = {std::istream_iterator<std::string>(in), {}};
-//     return in;
-//   }
-// };
-// 
-// template <typename T = project> auto parse_config(const std::string file) {
-// 
-//   std::vector<T> projects;
-//   std::ifstream project_file(file);
-//   std::string line;
-//   project proj;
-// 
-//   while (getline(project_file, line)) {
-// 
-//     // Skip blank lines
-//     if (!line.empty()) {
-// 
-//       // Store the unpopulated param
-//       std::stringstream ss(line);
-//       if (proj.name.empty())
-//         proj.name = line;
-//       else
-//         ss >> proj;
-//     }
-// 
-//     // If project is complete store it and clear down local
-//     if (!proj.toolchain.empty()) {
-//       projects.emplace_back(proj);
-//       proj.name.clear();
-//       proj.toolchain.clear();
-//     }
-//   }
-// 
-//   return projects;
-// }
+using project_info = const std::map<std::string, std::map<std::string, std::string>>;
 
-struct project2 {
-  std::string name;
-  std::vector<std::pair<std::string, std::string>> toolchain;
+project_info tools{
+    {"gcc",
+     {
+         {"4.1.2", "2007"},
+         {"4.8.3", "2014"},
+         {"4.8.5", "2015"},
+         {"5", "2016"},
+         {"6", "2017"},
+         {"7", "2018"},
+         {"8", "2018"},
+     }},
+
+    {"clang",
+     {
+         {"3.5", "2014"}, {"4", "2017"}, {"5", "2017"}, {"6", "2018"},
+     }},
 };
 
-const std::vector<project2> _p {
-	{"Dean_laptop", {{"kali", "2018.2"}, {"gcc", "8"}, {"clang", "6"}}},
-	{"Dean Travis", {{"Ubuntu", "14"}, {"gcc", "6"}, { "kernel", "4.14"}, {"clang", "6"}, {"C++", "14"}}},
+project_info projects{
+    {"Dean laptop",
+     {
+         {
+             "kali", "2018.2",
+         },
+         {
+             "gcc", "8",
+         },
+         {
+             "C++", "14",
+         },
+         {
+             "kernel", "4.15",
+         },
+         {
+             "python", "3.5.3",
+         },
+         {
+             "Firefox", "53.7.3",
+         },
+         {
+             "bash", "4.4",
+         },
+     }},
+
+    {"Dean Travis",
+     {{"Ubuntu", "14"},
+      {"gcc", "6"},
+      {"kernel", "4.14"},
+      {"clang", "6"},
+      {"C++", "14"}}},
 };
 
 int main() {
 
-  // Read project and tool info
-  // const auto &tools = parse_config("tools.txt");
+  for (const auto &project : projects) {
+    std::cout << project.first << '\n';
+    for (const auto &tool : project.second) {
 
-  for (const auto &project : _p) { // parse_config("projects.txt")) {
-	  std::cout << project.name << '\n';
-		for (const auto &tool : project.toolchain) {
-			std::string tool_name, revision;
-			std::tie(tool_name, revision) = tool;
-			std::cout << '\t' << tool_name << '\t' << revision << '\n';
-		}
+	   // Extract tool info
+      std::string tool_name, revision;
+      std::tie(tool_name, revision) = tool;
+
+      // Try to find date for tool and version
+      std::string date = "unknown";
+      const auto it = tools.find(tool_name);
+      if (it != tools.cend())
+	      date = "year"; // it->second;
+
+      std::cout << '\t' << tool_name << '\t' << revision << '\t' << date << '\n';
+
+
+//       std::find(std::cbegin(tools), std::cend(tools), [tool_name](const auto &t){
+// 		      	return t.name == tool_name;
+// 		      });
+
+
+
+      // for (const auto &t : 
+    }
   }
 
   // std::stringstream summary;
