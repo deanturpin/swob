@@ -2,13 +2,14 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <numeric>
 #include <sstream>
 #include <tuple>
-#include <map>
 #include <vector>
 
-using project_info = const std::map<std::string, std::map<std::string, std::string>>;
+using project_info =
+    const std::map<std::string, std::map<std::string, std::string>>;
 
 project_info tools{
     {"gcc",
@@ -68,26 +69,24 @@ int main() {
     std::cout << project.first << '\n';
     for (const auto &tool : project.second) {
 
-	   // Extract tool info
+      // Extract tool info
       std::string tool_name, revision;
       std::tie(tool_name, revision) = tool;
 
       // Try to find date for tool and version
       std::string date = "unknown";
-      const auto it = tools.find(tool_name);
-      if (it != tools.cend())
-	      date = "year"; // it->second;
+      const auto tool_it = tools.find(tool_name);
+      if (tool_it != tools.cend()) {
+        date = "tbd";
 
-      std::cout << '\t' << tool_name << '\t' << revision << '\t' << date << '\n';
+        const auto revision_it = tool_it->second.find(revision);
 
+        if (revision_it != tool_it->second.cend())
+          date = revision_it->second;
+      }
 
-//       std::find(std::cbegin(tools), std::cend(tools), [tool_name](const auto &t){
-// 		      	return t.name == tool_name;
-// 		      });
-
-
-
-      // for (const auto &t : 
+      std::cout << '\t' << tool_name << '\t' << revision << '\t' << date
+                << '\n';
     }
   }
 
