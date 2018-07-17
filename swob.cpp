@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <map>
+#include <iomanip>
 #include <numeric>
 #include <sstream>
 #include <tuple>
@@ -65,8 +66,12 @@ project_info projects{
 
 int main() {
 
+	std::stringstream summary;
+
   for (const auto &project : projects) {
     std::cout << project.first << '\n';
+
+    std::vector<double> ages;
     for (const auto &tool : project.second) {
 
       // Extract tool info
@@ -74,7 +79,7 @@ int main() {
       std::tie(tool_name, revision) = tool;
 
       // Try to find date for tool and version
-      std::string date = "unknown";
+      std::string date = "0";
       const auto tool_it = tools.find(tool_name);
       if (tool_it != tools.cend()) {
         date = "tbd";
@@ -85,63 +90,20 @@ int main() {
           date = revision_it->second;
       }
 
+      ages.push_back(std::strtod(date.c_str(), NULL));
+
       std::cout << '\t' << tool_name << '\t' << revision << '\t' << date
                 << '\n';
     }
+
+    const double average_age = ages.empty() ? 0.0 : std::accumulate(std::cbegin(ages), std::cend(ages), 0.0) / ages.size();
+
+    summary << std::quoted(project.first) << ' ' << average_age << '\n';
+    std::cout << "\tAverage age of " << summary.str();
   }
 
-  // std::stringstream summary;
-  // for (const auto &p : projects) {
-
-  //   std::istringstream iss(p.toolchain);
-  //   std::stringstream warnings;
-
-  //   std::vector<unsigned long> tool_years;
-
-  //   // Tokenise the toolchain and extract the years
-  //   for (const auto &t :
-  //        std::vector<std::string>{std::istream_iterator<std::string>{iss},
-  //                                 std::istream_iterator<std::string>{}}) {
-
-  //     // Split token into tool name and revision
-  //     std::istringstream token(t);
-  //     std::string name, revision;
-  //     std::getline(token, name, '-');
-  //     token >> revision;
-
-  //     // Look up the provenance of the tool
-  //     const auto tool_iterator =
-  //         std::find_if(std::cbegin(tools), std::cend(tools),
-  //                      [&name](const auto &a) { return a.name == name; });
-
-  //     // If we've found the tool then look for the revision
-  //     if (tool_iterator != std::cend(tools)) {
-  //       const auto revision_iterator = std::find_if(
-  //           std::cbegin(tool_iterator->releases),
-  //           std::cend(tool_iterator->releases),
-  //           [&revision](const auto &b) { return b.name == revision; });
-
-  //       if (revision_iterator != std::cend(tool_iterator->releases))
-  //         tool_years.push_back(revision_iterator->year);
-  //       else
-  //         warnings << revision << " missing, ";
-
-  //     } else
-  //       warnings << name << " missing, ";
-  //   }
-
-  //   double mean_year = 0;
-  //   if (!tool_years.empty())
-  //     mean_year =
-  //         std::accumulate(std::cbegin(tool_years), std::cend(tool_years),
-  //         0.0) /
-  //         tool_years.size();
-
-  //   summary << p.name << '\t' << mean_year << '\n';
-  // }
-
-  // // Dump summary to file
-  // std::ofstream out("summary.csv");
-  // if (out.good())
-  //   out << summary.str();
+  // Dump summary to file
+  std::ofstream out("summary.csv");
+  if (out.good())
+	  out << summary.str();
 }
