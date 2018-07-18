@@ -111,10 +111,10 @@ int main() {
     std::cout << project.first << '\n';
 
     std::vector<double> ages;
-    for (const auto &tool : project.second) {
+    for (const auto &[tool_name, revision] : project.second) {
 
       // Extract tool info
-      const auto[tool_name, revision] = tool;
+      // const auto[tool_name, revision] = tool;
 
       // Try to find date for tool and version
       std::string date = "0";
