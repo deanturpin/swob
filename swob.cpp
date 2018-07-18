@@ -1,13 +1,12 @@
-#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <iterator>
 #include <map>
 #include <numeric>
 #include <sstream>
 #include <tuple>
 #include <vector>
+#include <string>
 
 int main() {
 
@@ -58,6 +57,24 @@ int main() {
        {
            {"2018.2", "2018"},
        }},
+
+      {"bash",
+       {
+           {"4.4", "2018"},
+       }},
+
+      {"python",
+       {
+           {"3.5.3", "2017"},
+           {"3.6.5", "2018"},
+       }},
+
+      {"kernel",
+       {
+           {"4.14", "2018"},
+           {"4.15", "2018"},
+           {"4.16", "2018"},
+       }},
   };
 
   project_info projects{
@@ -70,16 +87,13 @@ int main() {
                "gcc", "8",
            },
            {
-               "c++", "14",
+               "c++", "17",
            },
            {
-               "kernel", "4.15",
+               "kernel", "4.16",
            },
            {
                "python", "3.5.3",
-           },
-           {
-               "firefox", "53.7.3",
            },
            {
                "bash", "4.4",
@@ -130,9 +144,8 @@ int main() {
             : std::accumulate(std::cbegin(ages), std::cend(ages), 0.0) /
                   ages.size();
 
+    std::cout << "\tAverage age of " << std::quoted(project.first) << ' ' << average_age << '\n';
     summary << std::quoted(project.first) << ' ' << average_age << '\n';
-    std::cout << "\tAverage age of " << summary.str();
-    summary.str("");
   }
 
   // Dump summary to file
