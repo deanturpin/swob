@@ -4,9 +4,9 @@
 #include <map>
 #include <numeric>
 #include <sstream>
+#include <string>
 #include <tuple>
 #include <vector>
-#include <string>
 
 int main() {
 
@@ -65,15 +65,12 @@ int main() {
 
       {"python",
        {
-           {"3.5.3", "2017"},
-           {"3.6.5", "2018"},
+           {"3.5.3", "2017"}, {"3.6.5", "2018"},
        }},
 
       {"kernel",
        {
-           {"4.14", "2018"},
-           {"4.15", "2018"},
-           {"4.16", "2018"},
+           {"4.14", "2018"}, {"4.15", "2018"}, {"4.16", "2018"},
        }},
   };
 
@@ -117,8 +114,7 @@ int main() {
     for (const auto &tool : project.second) {
 
       // Extract tool info
-      std::string tool_name, revision;
-      std::tie(tool_name, revision) = tool;
+      const auto[tool_name, revision] = tool;
 
       // Try to find date for tool and version
       std::string date = "0";
@@ -144,7 +140,8 @@ int main() {
             : std::accumulate(std::cbegin(ages), std::cend(ages), 0.0) /
                   ages.size();
 
-    std::cout << "\tAverage age of " << std::quoted(project.first) << ' ' << average_age << '\n';
+    std::cout << "\tAverage age of " << std::quoted(project.first) << ' '
+              << average_age << '\n';
     summary << std::quoted(project.first) << ' ' << average_age << '\n';
   }
 
