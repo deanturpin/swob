@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <algorithm>
 #include <map>
 #include <numeric>
 #include <sstream>
@@ -11,7 +12,7 @@
 int main() {
 
   using project_info =
-      const std::map<std::string, std::map<std::string, std::string>>;
+      const std::map<std::string, std::vector<std::pair<std::string, std::string>>>;
 
   project_info tools{
       {"gcc",
@@ -78,14 +79,12 @@ int main() {
            {"python", "3.5.3"},
            {"bash", "4.4"},
        }},
-
       {"Dean Travis",
        {{"ubuntu", "14"},
         {"gcc", "6"},
         {"kernel", "4.14"},
         {"clang", "6"},
         {"c++", "14"}}},
-
       {"Example project 1",
        {
            {"gcc", "4.8.5"},
@@ -109,10 +108,15 @@ int main() {
       // Try to find date for tool and version
       std::string date = "0";
       const auto tool_it = tools.find(tool_name);
+
       if (tool_it != tools.cend()) {
         date = "-1";
 
-        const auto revision_it = tool_it->second.find(revision);
+	const auto &revisions = tool_it->second;
+        const auto revision_it = std::find_if(revisions.cbegin(),
+			revisions.cend(), [rev = revision](const auto &r){
+				return r.first == rev;
+			});
 
         if (revision_it != tool_it->second.cend())
           date = revision_it->second;

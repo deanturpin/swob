@@ -7,7 +7,7 @@ A measure of software obsolescence based on toolchain age. Edit
 a new readme. The roadmaps are guides for where you might hope to be if you kept your whole toolchain up-to-date.
 
 ---
-Wed 18 Jul 10:39:55 BST 2018
+Thu 19 Jul 18:20:03 BST 2018
 # Tools
 ```
 gcc
@@ -70,27 +70,27 @@ Example project 2
 gcc 4.1.2 C++ 98 kernel 3.10 RHEL 5 fw 3.14.2
 ```
 Dean Travis
-	c++	14	2014
-	clang	6	2018
+	ubuntu	14	2014
 	gcc	6	2017
 	kernel	4.14	2018
-	ubuntu	14	2014
+	clang	6	2018
+	c++	14	2014
 	Average age of "Dean Travis" 2016.2
 Dean laptop
-	bash	4.4	2018
-	c++	17	2017
-	gcc	8	2018
 	kali	2018.2	2018
+	gcc	8	2018
+	c++	17	2017
 	kernel	4.16	2018
 	python	3.5.3	2017
+	bash	4.4	2018
 	Average age of "Dean laptop" 2017.67
 Example project 1
-	c++	03	2003
-	fw	4.1-rc8	2018
 	gcc	4.8.5	2015
 	kernel	3.10	2013
+	c++	03	2003
+	windows	10	2010
 	qt	4.8.7	2011
 	redhat	7	2014
-	windows	10	2010
+	fw	4.1-rc8	2018
 	Average age of "Example project 1" 2012
 ![](summary.svg)
