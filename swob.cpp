@@ -29,19 +29,15 @@ std::vector<project_info> get_config(const std::string &file) {
 		// Tool chain
 		if (std::string pairs; std::getline(in, pairs)) {
 			std::istringstream ss(pairs);
-
 			std::string key, value;
-			while (ss >> key >> value) {
-				std::cout << key << '\t' << value << '\n';
+			while (ss >> key >> value)
 				p.toolchain.push_back({key, value});
-			}
 		}
 
 		// Look for a blank line to store it
 		if (std::string blank; std::getline(in, blank))
-			if (blank.empty()) {
+			if (blank.empty())
 			info.emplace_back(p);
-			}
 	}
 
 	return info;
