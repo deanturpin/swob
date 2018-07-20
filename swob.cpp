@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iomanip>
-#include <iostream>
 #include <algorithm>
 #include <map>
 #include <numeric>
@@ -46,14 +45,11 @@ std::vector<project_info> get_config(const std::string &file) {
 int main() {
 
   const auto tools = get_config("tools.txt");
-  std::cout << tools.size() << " tools\n";
   const auto projects = get_config("projects.txt");
-  std::cout << projects.size() << " projects\n";
 
   std::stringstream summary;
 
   for (const auto & [ project_name, toolchain ] : projects) {
-    std::cout << project_name << '\n';
 
     std::vector<double> ages;
     for (const auto & [ tool_name, revision ] : toolchain) {
@@ -79,9 +75,6 @@ int main() {
       }
 
       ages.push_back(std::strtod(date.c_str(), nullptr));
-
-      std::cout << '\t' << tool_name << '\t' << revision << '\t' << date
-                << '\n';
     }
 
     const double average_age =
@@ -90,8 +83,6 @@ int main() {
             : std::accumulate(std::cbegin(ages), std::cend(ages), 0.0) /
                   ages.size();
 
-    std::cout << "\tAverage age of " << std::quoted(project_name) << ' '
-              << average_age << '\n';
     summary << std::quoted(project_name) << ' ' << average_age << '\n';
   }
 
