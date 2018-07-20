@@ -9,93 +9,45 @@
 #include <tuple>
 #include <vector>
 
+// using project_info =
+// const std::map<std::string, std::vector<std::pair<std::string, std::string>>>;
+//
+
+struct project_info {
+	std::string name;
+	std::vector<std::pair<std::string, std::string>> toolchain;
+};
+
+
+std::vector<project_info> get_config(const std::string &);
+std::vector<project_info> get_config(const std::string &file) {
+
+	std::ifstream in(file);
+	std::vector<project_info> info;
+	for(std::string line; std::getline(in, line);) {
+		const std::string name (line);
+		std::getline(in, line);
+		const std::string pairs (line);
+		std::getline(in, line);
+
+		if (line.empty()) {
+			// std::cout << name << " stored\n";
+			project_info p{name, {}};
+			info.emplace_back(p);
+		}
+
+		// std::cout << name << '\n';
+	}
+
+	return info;
+}
+
 int main() {
 
-  using project_info =
-      const std::map<std::string, std::vector<std::pair<std::string, std::string>>>;
-
-  project_info tools{
-      {"gcc",
-       {
-           {"4.1.2", "2007"},
-           {"4.8.3", "2014"},
-           {"4.8.5", "2015"},
-           {"5", "2016"},
-           {"6", "2017"},
-           {"7", "2018"},
-           {"8", "2018"},
-       }},
-      {"ubuntu",
-       {
-           {"12", "2012"},
-           {"13", "2013"},
-           {"14", "2014"},
-           {"15", "2015"},
-           {"16", "2016"},
-           {"17", "2017"},
-           {"18", "2018"},
-           {"19", "2019"},
-       }},
-      {"c++",
-       {
-           {"98", "1998"},
-           {"03", "2003"},
-           {"0x", "2008"},
-           {"11", "2011"},
-           {"14", "2014"},
-           {"17", "2017"},
-           {"2a", "2020"},
-       }},
-      {"clang",
-       {
-           {"3.5", "2014"}, {"4", "2017"}, {"5", "2017"}, {"6", "2018"},
-       }},
-      {"kali", {{"2018.2", "2018"}}},
-      {"bash", {{"4.4", "2018"}}},
-      {"windows", {{"10", "2010"}}},
-      {"qt", {{"4.8.7", "2011"}}},
-      {"fw", {{"4.1-rc8", "2018"}}},
-      {"redhat", {{"7", "2014"}}},
-      {"python",
-       {
-           {"3.5.3", "2017"}, {"3.6.5", "2018"},
-       }},
-      {"kernel",
-       {
-           {"3.10", "2013"},
-           {"4.14", "2018"},
-           {"4.15", "2018"},
-           {"4.16", "2018"},
-       }},
-  };
-
-  project_info projects{
-      {"Dean laptop",
-       {
-           {"kali", "2018.2"},
-           {"gcc", "8"},
-           {"c++", "17"},
-           {"kernel", "4.16"},
-           {"python", "3.5.3"},
-           {"bash", "4.4"},
-       }},
-      {"Dean Travis",
-       {{"ubuntu", "14"},
-        {"gcc", "6"},
-        {"kernel", "4.14"},
-        {"clang", "6"},
-        {"c++", "14"}}},
-      {"Example project 1",
-       {
-           {"gcc", "4.8.5"},
-           {"kernel", "3.10"},
-           {"c++", "03"},
-           {"windows", "10"},
-           {"qt", "4.8.7"},
-           {"redhat", "7"},
-           {"fw", "4.1-rc8"},
-       }},
-  };
+  const auto tools = get_config("tools.txt");
+  std::cout << tools.size() << " tools\n";
+  const auto projects = get_config("projects.txt");
+  std::cout << projects.size() << " projects\n";
 
   std::stringstream summary;
 
@@ -107,18 +59,21 @@ int main() {
 
       // Try to find date for tool and version
       std::string date = "0";
-      const auto tool_it = tools.find(tool_name);
+      const auto tool_it = std::find_if(tools.cbegin(),
+		      tools.cend(), [name = tool_name](const auto &tool){
+		      	return tool.name == name;
+		      });
 
       if (tool_it != tools.cend()) {
         date = "-1";
 
-	const auto &revisions = tool_it->second;
+	const auto &revisions = tool_it->toolchain;
         const auto revision_it = std::find_if(revisions.cbegin(),
 			revisions.cend(), [rev = revision](const auto &r){
 				return r.first == rev;
 			});
 
-        if (revision_it != tool_it->second.cend())
+        if (revision_it != revisions.cend())
           date = revision_it->second;
       }
 
