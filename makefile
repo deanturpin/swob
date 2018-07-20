@@ -9,6 +9,7 @@ DEBUG = -g --coverage
 all: swob.o
 	cat template.md > readme.md
 	TZ=BST-1 date >> readme.md
+	echo '![](summary.svg)' >> readme.md
 	echo '# Tools' >> readme.md
 	echo '```' >> readme.md
 	cat tools.txt >> readme.md
@@ -18,8 +19,6 @@ all: swob.o
 	cat projects.txt >> readme.md
 	echo '```' >> readme.md
 	gnuplot plot.txt
-	./$< >> readme.md
-	echo '![](summary.svg)' >> readme.md
 
 clean:
 	rm -f *.o *.svg
