@@ -7,7 +7,7 @@ A measure of software obsolescence based on toolchain age. Edit
 a new readme. The roadmaps are guides for where you might hope to be if you kept your whole toolchain up-to-date.
 
 ---
-Fri 20 Jul 09:11:30 BST 2018
+Fri 20 Jul 09:24:35 BST 2018
 # Tools
 ```
 gcc
@@ -74,63 +74,4 @@ Example project 2
 gcc 4.1.2 c++ 98 kernel 3.10 rhel 5 fw 3.14.2
 
 ```
-14 tools
-6 projects
-Dean laptop
-	kali	2018.2	2018
-	gcc	8	2018
-	clang	6	2018
-	c++	17	2017
-	kernel	4.16	2018
-	python	3.5.3	2017
-	Average age of "Dean laptop" 2017.67
-Dean Travis
-	ubuntu	14	2014
-	gcc	6	2017
-	kernel	4.14	2018
-	clang	6	2018
-	c++	14	2014
-	Average age of "Dean Travis" 2016.2
-Roadmap 2018
-	ubuntu	18	2018
-	gcc	7	2018
-	clang	5	2017
-	c++	14	2014
-	kernel	4.14	2018
-	python	3.5.3	2017
-	ada	2012	2012
-	windows	10	2010
-	qt	5.6	2016
-	rhel	7	2014
-	fw	5.0.0-rc6	2018
-	Average age of "Roadmap 2018" 2015.64
-Roadmap 2019
-	ubuntu	19	2019
-	gcc	8	2018
-	clang	6	2018
-	c++	17	2017
-	kernel	4.17	2018
-	python	3.6.5	2018
-	ada	2012	2012
-	windows	10	2010
-	qt	5.12	2018
-	rhel	8	2019
-	fw	5.0.0-rc6	2018
-	Average age of "Roadmap 2019" 2016.82
-Example project 1
-	gcc	4.8.5	2015
-	c++	03	2003
-	kernel	3.10	2013
-	windows	10	2010
-	qt	4.8.7	2011
-	rhel	7	2014
-	fw	4.1-rc8	2018
-	Average age of "Example project 1" 2012
-Example project 2
-	gcc	4.1.2	2007
-	c++	98	1998
-	kernel	3.10	2013
-	rhel	5	2007
-	fw	3.14.2	2010
-	Average age of "Example project 2" 2007
 ![](summary.svg)
