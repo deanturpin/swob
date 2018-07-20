@@ -42,7 +42,7 @@ std::vector<project_info> get_config(const std::string &file) {
       while (ss >> key >> value)
         toolchain.push_back({key, value});
 
-      // Store the project if there's a black line delimiter
+      // Store the project if there's a blank line delimiter
       if (std::string blank; std::getline(in, blank))
         if (blank.empty())
           info.push_back({name, toolchain});
