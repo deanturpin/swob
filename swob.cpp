@@ -45,8 +45,8 @@ std::vector<project_info> get_config(const std::string &file) {
 
 int main() {
 
-  const auto tools = get_config("tools.txt");
-  const auto projects = get_config("projects.txt");
+  const auto &tools = get_config("tools.txt");
+  const auto &projects = get_config("projects.txt");
 
   std::stringstream summary;
 
