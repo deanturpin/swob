@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
-#include <algorithm>
 #include <map>
 #include <numeric>
 #include <sstream>
@@ -9,37 +9,37 @@
 #include <vector>
 
 struct project_info {
-	std::string name;
-	std::vector<std::pair<std::string, std::string>> toolchain;
+  std::string name;
+  std::vector<std::pair<std::string, std::string>> toolchain;
 };
 
 std::vector<project_info> get_config(const std::string &);
 std::vector<project_info> get_config(const std::string &file) {
 
-	std::ifstream in(file);
-	std::vector<project_info> info;
+  std::ifstream in(file);
+  std::vector<project_info> info;
 
-	// Extract project name
-	for(std::string name; std::getline(in, name);) {
+  // Extract project name
+  for (std::string name; std::getline(in, name);) {
 
-		// Initialise a new project
-		project_info p{name, {}};
+    // Initialise a new project
+    project_info p{name, {}};
 
-		// Tool chain
-		if (std::string pairs; std::getline(in, pairs)) {
-			std::istringstream ss(pairs);
-			std::string key, value;
-			while (ss >> key >> value)
-				p.toolchain.push_back({key, value});
-		}
+    // Tool chain
+    if (std::string pairs; std::getline(in, pairs)) {
+      std::istringstream ss(pairs);
+      std::string key, value;
+      while (ss >> key >> value)
+        p.toolchain.push_back({key, value});
+    }
 
-		// Look for a blank line to store it
-		if (std::string blank; std::getline(in, blank))
-			if (blank.empty())
-			info.emplace_back(p);
-	}
+    // Look for a blank line to store it
+    if (std::string blank; std::getline(in, blank))
+      if (blank.empty())
+        info.emplace_back(p);
+  }
 
-	return info;
+  return info;
 }
 
 int main() {
@@ -56,19 +56,20 @@ int main() {
 
       // Try to find date for tool and version
       std::string date = "0";
-      const auto tool_it = std::find_if(tools.cbegin(),
-		      tools.cend(), [name = tool_name](const auto &tool){
-		      	return tool.name == name;
-		      });
+      const auto tool_it = std::find_if(
+          tools.cbegin(), tools.cend(), [name = tool_name](const auto &tool) {
+            return tool.name == name;
+          });
 
       if (tool_it != tools.cend()) {
         date = "-1";
 
-	const auto &revisions = tool_it->toolchain;
-        const auto revision_it = std::find_if(revisions.cbegin(),
-			revisions.cend(), [rev = revision](const auto &r){
-				return r.first == rev;
-			});
+        const auto &revisions = tool_it->toolchain;
+        const auto revision_it =
+            std::find_if(revisions.cbegin(),
+                         revisions.cend(), [rev = revision](const auto &r) {
+                           return r.first == rev;
+                         });
 
         if (revision_it != revisions.cend())
           date = revision_it->second;
