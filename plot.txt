@@ -4,7 +4,7 @@ set key left
 set grid y
 set boxwidth 0.25
 set style fill solid 1.0 border -1
-set yrange [2006:2020]
+set yrange [2000:2020]
 set xtics rotate
 set ytics 1
 set ylabel "Year"
