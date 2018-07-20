@@ -8,36 +8,45 @@
 #include <tuple>
 #include <vector>
 
+// A project has a name and a toolchain of tool/revision pairs
 struct project_info {
   std::string name;
-  using rev_date = std::pair<std::string, std::string>;
+
+  struct rev_date {
+    std::string revision;
+    std::string date;
+  };
+
   std::vector<rev_date> toolchain;
 };
 
+// Open a project configuration and populate a container of revision information
 std::vector<project_info> get_config(const std::string &);
 std::vector<project_info> get_config(const std::string &file) {
 
   std::ifstream in(file);
   std::vector<project_info> info;
 
-  // Extract project name
+  // Read project name
   for (std::string name; std::getline(in, name);) {
 
-    // Initialise a new project
-    project_info p{name, {}};
-
-    // Tool chain
+    // Read the toolchain
     if (std::string pairs; std::getline(in, pairs)) {
+
+      // Populate a local copy of toolchain
+      std::vector<project_info::rev_date> toolchain;
+
+      // Read the revision/date pairs
       std::istringstream ss(pairs);
       std::string key, value;
       while (ss >> key >> value)
-        p.toolchain.push_back({key, value});
-    }
+        toolchain.push_back({key, value});
 
-    // Look for a blank line to store it
-    if (std::string blank; std::getline(in, blank))
-      if (blank.empty())
-        info.emplace_back(p);
+      // Store the project if there's a black line delimiter
+      if (std::string blank; std::getline(in, blank))
+        if (blank.empty())
+          info.push_back({name, toolchain});
+    }
   }
 
   return info;
@@ -45,6 +54,7 @@ std::vector<project_info> get_config(const std::string &file) {
 
 int main() {
 
+  // Read tools and projects
   const auto &tools = get_config("tools.txt");
   const auto &projects = get_config("projects.txt");
 
@@ -69,11 +79,11 @@ int main() {
         const auto revision_it =
             std::find_if(revisions.cbegin(),
                          revisions.cend(), [rev = revision](const auto &r) {
-                           return r.first == rev;
+                           return r.revision == rev;
                          });
 
         if (revision_it != revisions.cend())
-          date = revision_it->second;
+          date = revision_it->date;
       }
 
       ages.push_back(std::strtod(date.c_str(), nullptr));
