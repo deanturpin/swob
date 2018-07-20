@@ -10,7 +10,8 @@
 
 struct project_info {
   std::string name;
-  std::vector<std::pair<std::string, std::string>> toolchain;
+  using rev_date = std::pair<std::string, std::string>;
+  std::vector<rev_date> toolchain;
 };
 
 std::vector<project_info> get_config(const std::string &);
