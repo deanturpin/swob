@@ -9,34 +9,39 @@
 #include <tuple>
 #include <vector>
 
-// using project_info =
-// const std::map<std::string, std::vector<std::pair<std::string, std::string>>>;
-//
-
 struct project_info {
 	std::string name;
 	std::vector<std::pair<std::string, std::string>> toolchain;
 };
-
 
 std::vector<project_info> get_config(const std::string &);
 std::vector<project_info> get_config(const std::string &file) {
 
 	std::ifstream in(file);
 	std::vector<project_info> info;
-	for(std::string line; std::getline(in, line);) {
-		const std::string name (line);
-		std::getline(in, line);
-		const std::string pairs (line);
-		std::getline(in, line);
 
-		if (line.empty()) {
-			// std::cout << name << " stored\n";
-			project_info p{name, {}};
-			info.emplace_back(p);
+	// Extract project name
+	for(std::string name; std::getline(in, name);) {
+
+		// Initialise a new project
+		project_info p{name, {}};
+
+		// Tool chain
+		if (std::string pairs; std::getline(in, pairs)) {
+			std::istringstream ss(pairs);
+
+			std::string key, value;
+			while (ss >> key >> value) {
+				std::cout << key << '\t' << value << '\n';
+				p.toolchain.push_back({key, value});
+			}
 		}
 
-		// std::cout << name << '\n';
+		// Look for a blank line to store it
+		if (std::string blank; std::getline(in, blank))
+			if (blank.empty()) {
+			info.emplace_back(p);
+			}
 	}
 
 	return info;
