@@ -62,18 +62,17 @@ int main() {
 
   for (const auto & [ project_name, toolchain ] : projects) {
 
+    // Try to find date for tool and revision
     std::vector<double> ages;
-    for (const auto & [ tool_name, revision ] : toolchain) {
+    for (const auto & [ tool_name, revision ] : toolchain)
+      if (const auto tool_it = std::find_if(
+              tools.cbegin(),
+              tools.cend(), [name = tool_name](
+                                const auto
+                                    &tool) { return tool.name == name; });
+          tool_it != tools.cend()) {
 
-      // Try to find date for tool and revision
-      const auto tool_it = std::find_if(
-          tools.cbegin(), tools.cend(), [name = tool_name](const auto &tool) {
-            return tool.name == name;
-          });
-
-      if (tool_it != tools.cend()) {
-
-	// Found the tool, check if there's a date for the revision
+        // Found the tool, check if there's a date for the revision
         const std::string date = [&tool_it, rev = revision ] {
 
           const auto &revisions = tool_it->toolchain;
@@ -87,13 +86,11 @@ int main() {
 
         ages.push_back(std::strtod(date.c_str(), nullptr));
       }
-    }
 
     const double average_age =
         ages.empty()
             ? 0.0
-            : std::accumulate(ages.cbegin(), ages.cend(), 0.0) /
-                  ages.size();
+            : std::accumulate(ages.cbegin(), ages.cend(), 0.0) / ages.size();
 
     summary << std::quoted(project_name) << ' ' << average_age << '\n';
   }
