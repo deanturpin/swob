@@ -65,7 +65,7 @@ int main() {
     std::vector<double> ages;
     for (const auto & [ tool_name, revision ] : toolchain) {
 
-      // Try to find date for tool and version
+      // Try to find date for tool and revision
       const auto tool_it = std::find_if(
           tools.cbegin(), tools.cend(), [name = tool_name](const auto &tool) {
             return tool.name == name;
@@ -99,7 +99,6 @@ int main() {
   }
 
   // Dump summary to file
-  std::ofstream out("summary.csv");
-  if (out.good())
+  if (std::ofstream out("summary.csv"); out.good())
     out << summary.str();
 }
