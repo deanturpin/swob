@@ -66,33 +66,33 @@ int main() {
     for (const auto & [ tool_name, revision ] : toolchain) {
 
       // Try to find date for tool and version
-      std::string date = "0";
       const auto tool_it = std::find_if(
           tools.cbegin(), tools.cend(), [name = tool_name](const auto &tool) {
             return tool.name == name;
           });
 
       if (tool_it != tools.cend()) {
-        date = "-1";
 
-        const auto &revisions = tool_it->toolchain;
-        const auto revision_it =
-            std::find_if(revisions.cbegin(),
-                         revisions.cend(), [rev = revision](const auto &r) {
-                           return r.revision == rev;
-                         });
+	// Found the tool, check if there's a date for the revision
+        const std::string date = [&tool_it, rev = revision ] {
 
-        if (revision_it != revisions.cend())
-          date = revision_it->date;
+          const auto &revisions = tool_it->toolchain;
+          const auto revision_it =
+              std::find_if(revisions.cbegin(), revisions.cend(),
+                           [&rev](const auto &r) { return r.revision == rev; });
+
+          return revision_it != revisions.cend() ? revision_it->date : "-1";
+        }
+        ();
+
+        ages.push_back(std::strtod(date.c_str(), nullptr));
       }
-
-      ages.push_back(std::strtod(date.c_str(), nullptr));
     }
 
     const double average_age =
         ages.empty()
             ? 0.0
-            : std::accumulate(std::cbegin(ages), std::cend(ages), 0.0) /
+            : std::accumulate(ages.cbegin(), ages.cend(), 0.0) /
                   ages.size();
 
     summary << std::quoted(project_name) << ' ' << average_age << '\n';
