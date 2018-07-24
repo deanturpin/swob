@@ -54,12 +54,12 @@ std::vector<project_info> get_config(const std::string &file) {
 
 int main() {
 
-  // Read tools and projects
+  // Read tools and project info
   const auto &tools = get_config("tools.txt");
   const auto &projects = get_config("projects.txt");
 
+  // Iterate over each project and calculate the age of the toolchain
   std::stringstream summary;
-
   for (const auto & [ project_name, toolchain ] : projects) {
 
     // Try to find date for tool and revision
