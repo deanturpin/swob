@@ -65,6 +65,8 @@ int main() {
     // Try to find date for tool and revision
     std::vector<double> ages;
     for (const auto & [ tool_name, revision ] : toolchain)
+
+      // Search for the tool
       if (const auto tool_it = std::find_if(
               tools.cbegin(),
               tools.cend(), [name = tool_name](
@@ -72,19 +74,17 @@ int main() {
                                     &tool) { return tool.name == name; });
           tool_it != tools.cend()) {
 
-        // Found the tool, check if there's a date for the revision
-        const std::string date = [&tool_it, rev = revision ] {
-
+        // Found the tool, search for a date for this revision of tool and
+        // store it
+        ages.push_back(std::strtod([&tool_it, rev = revision ] {
           const auto &revisions = tool_it->toolchain;
           const auto revision_it =
               std::find_if(revisions.cbegin(), revisions.cend(),
                            [&rev](const auto &r) { return r.revision == rev; });
 
           return revision_it != revisions.cend() ? revision_it->date : "-1";
-        }
-        ();
-
-        ages.push_back(std::strtod(date.c_str(), nullptr));
+        }().c_str(),
+                                   nullptr));
       }
 
     const double average_age =
