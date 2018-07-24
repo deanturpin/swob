@@ -64,7 +64,7 @@ int main() {
 
     // Try to find date for tool and revision
     std::vector<double> ages;
-    for (const auto & [ tool_name, revision ] : toolchain)
+    for (const auto & [ tool_name, revision ] : toolchain) {
 
       // Search for the tool
       if (const auto tool_it = std::find_if(
@@ -86,12 +86,15 @@ int main() {
         }().c_str(),
                                    nullptr));
       }
+    }
 
+    // Calculate the average age of all stages in the toolchain
     const double average_age =
         ages.empty()
             ? 0.0
             : std::accumulate(ages.cbegin(), ages.cend(), 0.0) / ages.size();
 
+    // Store the age for later
     summary << std::quoted(project_name) << ' ' << average_age << '\n';
   }
 
