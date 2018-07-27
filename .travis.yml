@@ -23,7 +23,6 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - clang++-6.0
-            - llvm-cov-6.0
             - g++-8
             - cppcheck
             - gnuplot
