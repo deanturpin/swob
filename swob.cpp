@@ -69,18 +69,18 @@ int main() {
       // Search for the tool
       if (const auto tool_it = std::find_if(
               tools.cbegin(),
-              tools.cend(), [name = tool_name](
+              tools.cend(), [tool_name = tool_name](
                                 const auto
-                                    &tool) { return tool.name == name; });
+                                    &tool) { return tool.name == tool_name; });
           tool_it != tools.cend()) {
 
         // Found the tool, search for a date for this revision of tool and
         // store it
-        ages.push_back(std::strtod([&tool_it, rev = revision ] {
+        ages.push_back(std::strtod([&tool_it, revsion = revision ] {
           const auto &revisions = tool_it->toolchain;
           const auto revision_it =
               std::find_if(revisions.cbegin(), revisions.cend(),
-                           [&rev](const auto &r) { return r.revision == rev; });
+                           [&revsion](const auto &r) { return r.revision == revsion; });
 
           return revision_it != revisions.cend() ? revision_it->date : "-1";
         }().c_str(),
