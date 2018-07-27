@@ -4,6 +4,7 @@ script:
   - make CXX=g++-8
   - cppcheck --enable=all .
   - bash <(curl -s https://codecov.io/bash)
+  - llvm-cov-6.0 --version
 
 deploy:
   provider: pages
