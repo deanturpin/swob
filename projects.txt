@@ -1,5 +1,5 @@
 Dean laptop
-kali 2018.3 gcc 8 clang 6 c++ 17 kernel 4.17 python 3.5.3
+kali 2018.3 gcc 8 clang 6 c++ 17 kernel 4.17 python 3.6.6
 
 Dean Travis
 ubuntu 14 gcc 6 kernel 4.14
