@@ -7,7 +7,7 @@ A measure of software obsolescence based on toolchain age. Edit
 a new readme. The roadmaps are guides for where you might hope to be if you kept your whole toolchain up-to-date.
 
 ---
-Sun 23 Sep 11:35:27 BST 2018
+Sun 23 Sep 11:36:23 BST 2018
 ![](summary.svg)
 # Tools
 ```
@@ -69,7 +69,7 @@ Roadmap 2019
 ubuntu 19 gcc 8 clang 6 c++ 17 kernel 4.17 python 3.6.5 ada 2012 windows 10 qt 5.12 rhel 8 fw 5.0.0-rc6 kali 2019
 
 Roadmap 2020
-ubuntu 20 c++ 20 rhel 8 kali 2021
+ubuntu 20 c++ 20 rhel 8 kali 2020
 
 Example project 1
 gcc 4.8.5 c++ 03 kernel 3.10 windows 10 qt 4.8.7 rhel 7 fw 4.1-rc8
