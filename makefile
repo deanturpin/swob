@@ -1,6 +1,6 @@
 CXX = g++-8
-CCFLAGS = -std=c++17 --all-warnings --extra-warnings -pedantic-errors \
-	 -Wshadow -Wfloat-equal -Weffc++ -Wdelete-non-virtual-dtor
+CCFLAGS = --std=c++17 --all-warnings --extra-warnings --pedantic-errors \
+	 -Werror -Wshadow -Wfloat-equal -Weffc++ -Wdelete-non-virtual-dtor
 DEBUG = -g --coverage
 
 %.o: %.cpp
