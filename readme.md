@@ -7,7 +7,7 @@ A measure of software obsolescence based on toolchain age. Edit
 a new readme. The roadmaps are guides for where you might hope to be if you kept your whole toolchain up-to-date.
 
 ---
-Sun 13 Jan 13:10:52 BST 2019
+Sun 13 Jan 13:12:18 BST 2019
 ![](summary.svg)
 # Tools
 ```
@@ -30,7 +30,7 @@ kernel
 3.10 2013 4.10 2017 4.14 2018 4.16 2018 3.10.0-327 2013 2.6.32-642 2009 2.6.18-128 2006 3.19.8 2014 4.17 2018 4.18 2018 4.19 2019
 
 python
-3.5.3 2017 3.6.5 2018 3.6.6 2018
+3.5.3 2017 3.6.5 2018 3.6.6 2018 3.6.8 2019
 
 qt
 4.8.7 2011 5.6 2016 5.9 2017 5.12 2018
@@ -60,7 +60,7 @@ puppet
 # Projects
 ```
 Dean laptop
-kali 2019.1 gcc 8 clang 7 c++ 17 kernel 4.19 python 3.6.6 puppet 5.5.8
+kali 2019.1 gcc 8 clang 7 c++ 17 kernel 4.19 python 3.6.8 puppet 5.5.8
 
 Dean Travis
 ubuntu 14 gcc 8 clang 6 kernel 4.14
