@@ -7,7 +7,7 @@ A measure of software obsolescence based on toolchain age. Edit
 a new readme. The roadmaps are guides for where you might hope to be if you kept your whole toolchain up-to-date.
 
 ---
-Sun 13 Jan 18:30:17 BST 2019
+Mon 28 Jan 18:28:33 BST 2019
 ![](summary.svg)
 # Tools
 ```
@@ -78,6 +78,6 @@ Example project 1
 gcc 4.8.5 c++ 03 kernel 3.10 windows 10 qt 4.8.7 rhel 7 fw 4.1-rc8
 
 Example project 2
-gcc 4.1.2 c++ 98 kernel 3.10 rhel 5 fw 3.14.2
+gcc 4.1.2 c++ 98 kernel 2.6.18-128 rhel 5 fw 3.14.2
 
 ```
